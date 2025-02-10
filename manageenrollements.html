@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Enrollments</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #66c2a6;
+            padding: 10px 20px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto; 
+            display: block; 
+        }
+
+        .sidebar .profile h2 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .sidebar .profile p {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .sidebar .nav-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #6c757d;
+        }
+
+        .sidebar .nav-item {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .nav-item a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .nav-item a:hover {
+            background-color: #66c2a6;
+            color: #fff;
+        }
+
+        .sidebar .nav-item a svg {
+            margin-right: 10px;
+        }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+<div class="navbar">
+  <div class="search-bar">
+    <input type="text" placeholder="Search...">
+  </div>
+
+  </div>
+
+  <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="profile">
+              <img src="img/img0.jpg" alt="Profile Picture"> 
+              <h2>NUR FATHIHAH MAISARAH BINTI PIEI</h2>
+              <p>2024947793</p>
+          </div>
+
+
+          <h3 class="nav-title">Navigation</h3>
+          <ul>
+              <li class="nav-item">
+                  <a href="staff.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H3a2 2 0 01-2-2V5a2 2 0 012-2h6l5 5v11a2 2 0 01-2 2z" />
+                      </svg>
+                      Dashboard
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="managestudent.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+                      </svg>
+                      Manage Student
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="managecourses.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H3" />
+                      </svg>
+                      Manage Courses
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="manageenrollements.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                      </svg>
+                      Manage Enrollments
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="viewsubmission.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V7a2 2 0 00-2-2H6a2 2 0 00-2 2v6m16 0a2 2 0 012 2v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1a2 2 0 012-2m-4 0v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1a2 2 0 012-2m4 0H6" />
+                      </svg>
+                      Submissions
+                  </a>
+              </li>
+          </ul>
+          
+      </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <h1 class="text-2xl font-bold mb-4">Manage Enrollments</h1>
+
+      <div class="mb-4">
+        <label for="student" class="block text-sm font-medium text-gray-700">Student</label>
+        <select id="student" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+          <option value="">Select a student</option>
+          <!-- Dynamic options to be populated -->
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="course" class="block text-sm font-medium text-gray-700">Course</label>
+        <select id="course" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+          <option value="">Select a course</option>
+          <!-- Dynamic options to be populated -->
+        </select>
+      </div>
+
+      <button id="enrollBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enroll</button>
+
+      <div class="mt-6">
+        <h2 class="text-xl font-bold mb-4">Enrollment List</h2>
+        <table class="table-auto w-full bg-white rounded shadow-md">
+          <thead>
+            <tr>
+              <th class="border px-4 py-2">Enrollment ID</th>
+              <th class="border px-4 py-2">Student</th>
+              <th class="border px-4 py-2">Course</th>
+              <th class="border px-4 py-2">Enrollment Date</th>
+              <th class="border px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="enrollmentList">
+            <!-- Dynamic rows to be populated -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const studentSelect = document.getElementById("student");
+      const courseSelect = document.getElementById("course");
+      const enrollmentList = document.getElementById("enrollmentList");
+      const enrollBtn = document.getElementById("enrollBtn");
+
+      // Fetch students and populate the select menu
+      const fetchStudents = async () => {
+        try {
+          const response = await axios.get("/api/students"); // Replace with your API endpoint
+          response.data.forEach(student => {
+            const option = document.createElement("option");
+            option.value = student.student_id;
+            option.textContent = student.name;
+            studentSelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching students", error);
+        }
+      };
+
+      // Fetch courses and populate the select menu
+      const fetchCourses = async () => {
+        try {
+          const response = await axios.get("/api/courses"); // Replace with your API endpoint
+          response.data.forEach(course => {
+            const option = document.createElement("option");
+            option.value = course.course_id;
+            option.textContent = course.course_name;
+            courseSelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching courses", error);
+        }
+      };
+
+      // Fetch enrollments and populate the table
+      const fetchEnrollments = async () => {
+        try {
+          const response = await axios.get("/api/enrollments"); // Replace with your API endpoint
+          enrollmentList.innerHTML = "";
+          response.data.forEach(enrollment => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td class="border px-4 py-2">${enrollment.enrollment_id}</td>
+              <td class="border px-4 py-2">${enrollment.student_name}</td>
+              <td class="border px-4 py-2">${enrollment.course_name}</td>
+              <td class="border px-4 py-2">${enrollment.enrollment_date}</td>
+              <td class="border px-4 py-2">
+                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="deleteEnrollment(${enrollment.enrollment_id})">Delete</button>
+              </td>
+            `;
+            enrollmentList.appendChild(row);
+          });
+        } catch (error) {
+          console.error("Error fetching enrollments", error);
+        }
+      };
+
+      // Enroll a student in a course
+      enrollBtn.addEventListener("click", async () => {
+        const studentId = studentSelect.value;
+        const courseId = courseSelect.value;
+
+        if (!studentId || !courseId) {
+          Swal.fire("Error", "Please select both student and course.", "error");
+          return;
+        }
+
+        try {
+          await axios.post("/api/enrollments", { student_id: studentId, course_id: courseId }); // Replace with your API endpoint
+          Swal.fire("Success", "Student enrolled successfully!", "success");
+          fetchEnrollments();
+        } catch (error) {
+          console.error("Error enrolling student", error);
+          Swal.fire("Error", "Failed to enroll student.", "error");
+        }
+      });
+
+      // Delete an enrollment
+      window.deleteEnrollment = async (enrollmentId) => {
+        try {
+          await axios.delete(`/api/enrollments/${enrollmentId}`); // Replace with your API endpoint
+          Swal.fire("Success", "Enrollment deleted successfully!", "success");
+          fetchEnrollments();
+        } catch (error) {
+          console.error("Error deleting enrollment", error);
+          Swal.fire("Error", "Failed to delete enrollment.", "error");
+        }
+      };
+
+      // Initialize the page
+      await fetchStudents();
+      await fetchCourses();
+      await fetchEnrollments();
+    });
+  </script>
+</body>
+</html>
